@@ -1,0 +1,13 @@
+tensorflow
+pickle
+numpy
+scipy
+scikit-learn
+opencv-python
+h5py
+matplotlib
+Pillow
+requests
+psutil
+flask
+six
