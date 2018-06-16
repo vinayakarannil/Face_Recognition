@@ -22,13 +22,13 @@ root folder
 ```
   python lib/src/create_face_embeddings.py 
  ```
- Once you run the script succesfully, a pickle file with name face_embeddings.pickle will be generated inside lib/src folder
+  Once you run the script succesfully, a pickle file with name face_embeddings.pickle will be generated inside lib/src folder
  
 5. Start the server by running the command
 ```
   python server/rest-server.py
 ```
-  access the UI using url https://127.0.0.1:5000. It will show a button with face recognition as label. Once you click on it, automatically your primary camera will get turned on and start recognizing the faces.
+  access the UI using url https://127.0.0.1:5000. It will show a button with face recognition as label. Once you click on it,      automatically your primary camera will get turned on and start recognizing the faces.
  
  ## sample result 
  
