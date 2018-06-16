@@ -20,7 +20,7 @@ root folder
 
 [Before alignment]<img src="https://github.com/vinayakkailas/face_recognition/blob/master/server/static/images/1.jpg"  width="250" height="250" />    [After alignment] <img src="https://github.com/vinayakkailas/face_recognition/blob/master/server/static/images/2.png"  width="250" height="250" /> 
 
-3. Download [pre-trained-wight](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: [available-weights](https://github.com/davidsandberg/facenet#pre-trained-models)) 
+3. Download [pre-trained-weight](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: [available-weights](https://github.com/davidsandberg/facenet#pre-trained-models)) 
 4. Create face embeddings using pre-trained facenet model. Run the below scripts by changing the folder paths.(edit paths in [lines](https://github.com/vinayakkailas/face_recognition/blob/49ed6e80a4205e6a8fa1a18dbdc8976d4be29535/lib/src/create_face_embeddings.py#L49))
 ```
   python lib/src/create_face_embeddings.py 
