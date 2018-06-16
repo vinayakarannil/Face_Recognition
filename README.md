@@ -1,6 +1,6 @@
 # face_recognition
 
-A light weight face recognition implementation using a pre-trained facenet model. Most of the code is taken from https://github.com/davidsandberg/facenet repository.
+A light weight face recognition implementation using a pre-trained facenet model. Most of the code is taken from David Sandberg's  [facenet](https://github.com/davidsandberg/facenet) repository.
 
 ## Steps to follow:
 1. Create a dataset of faces for each person and arrange them in below order
@@ -34,7 +34,7 @@ root folder
  
  ![alt text](https://github.com/vinayakkailas/face_recognition/blob/master/server/static/images/vinayak.jpeg)
  
-for more information, please go through my blog https://medium.com/@vinayakvarrier/building-a-real-time-face-recognition-system-using-pre-trained-facenet-model-f1a277a06947  
+for more information, please go through my blog [blog](https://medium.com/@vinayakvarrier/building-a-real-time-face-recognition-system-using-pre-trained-facenet-model-f1a277a06947)  
 
 NOTE: The faces are identified using retrievel method, instead if you have enough data, you can train a classifier on top of face embeddings ([Train-a-classifier-on-own-images](https://github.com/davidsandberg/facenet/wiki/Train-a-classifier-on-own-images)) 
 
