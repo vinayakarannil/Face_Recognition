@@ -22,8 +22,9 @@ root folder
 ```
   python lib/src/create_face_embeddings.py 
  ```
- Once you run the script succesfully, a pickle file with name face_embeddings.pickle will be generated inside lib/src folder.
-5. Start the server by running the command.  
+ Once you run the script succesfully, a pickle file with name face_embeddings.pickle will be generated inside lib/src folder
+ 
+5. Start the server by running the command
 ```
   python server/rest-server.py
 ```
