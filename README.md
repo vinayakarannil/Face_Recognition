@@ -16,9 +16,9 @@ root folder
 |   │───IMG2
 |   |   ....
 ```
-2. Align the faces using MTCNN or dllib. Please use the scripts available in lib/src/align. For this project i aligned faces using MTCNN.(Please have a look at https://github.com/davidsandberg/facenet/wiki/Validate-on-lfw#4-align-the-lfw-dataset if you need any clarifications) 
-3. Download pre-trained weights from https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: https://github.com/davidsandberg/facenet#pre-trained-models) 
-4. Create face embeddings using pre-trained facenet model. Run the below scripts by changing the folder paths.(edit paths in lines starting from https://github.com/vinayakkailas/face_recognition/blob/49ed6e80a4205e6a8fa1a18dbdc8976d4be29535/lib/src/create_face_embeddings.py#L49)
+2. Align the faces using MTCNN or dllib. Please use the scripts available in lib/src/align. For this project i aligned faces using MTCNN.(Please have a look at [aligning faces](https://github.com/davidsandberg/facenet/wiki/Validate-on-lfw#4-align-the-lfw-dataset) if you need any clarifications) 
+3. Download pre-trained weights from [pre-trained-wight](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: [available-weights](https://github.com/davidsandberg/facenet#pre-trained-models)) 
+4. Create face embeddings using pre-trained facenet model. Run the below scripts by changing the folder paths.(edit paths in [lines](https://github.com/vinayakkailas/face_recognition/blob/49ed6e80a4205e6a8fa1a18dbdc8976d4be29535/lib/src/create_face_embeddings.py#L49))
 ```
   python lib/src/create_face_embeddings.py 
  ```
@@ -36,7 +36,7 @@ root folder
  
 for more information, please go through my blog https://medium.com/@vinayakvarrier/building-a-real-time-face-recognition-system-using-pre-trained-facenet-model-f1a277a06947  
 
-NOTE: The faces are identified using retrievel method, instead if you have enough data you can train a classifier on top of face embeddings(https://github.com/davidsandberg/facenet/wiki/Train-a-classifier-on-own-images) 
+NOTE: The faces are identified using retrievel method, instead if you have enough data, you can train a classifier on top of face embeddings ([Train-a-classifier-on-own-images](https://github.com/davidsandberg/facenet/wiki/Train-a-classifier-on-own-images)) 
 
 References:
 
