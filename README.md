@@ -7,11 +7,11 @@ A light weight face recognition implementation using a pre-trained facenet model
 ```
 root folder  
 │
-└───person 1
+└───Person 1
 │   │───IMG1
 │   │───IMG2
 │   │   ....
-└───person 2
+└───Person 2
 |   │───IMG1
 |   │───IMG2
 |   |   ....
