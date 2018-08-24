@@ -69,7 +69,7 @@ def main(args):
             # Run forward pass to calculate embeddings
             for i, filename in enumerate(paths):
 
-                images = facenet.load_img(filename, False, False, image_size)
+                images = facenet.load_image(filename, False, False, image_size)
                 feed_dict = { images_placeholder:images, phase_train_placeholder:False }
                 feature_vector = sess.run(embeddings, feed_dict=feed_dict)
                 extracted_dict[filename] =  feature_vector
