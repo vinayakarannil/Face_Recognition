@@ -134,51 +134,56 @@ def identify_person(image_vector, feature_array, k=9):
 	    top_k_ind = np.argsort([np.linalg.norm(image_vector-pred_row) \
                             for ith_row, pred_row in enumerate(feature_array.values())])[:k]
             result = feature_array.keys()[top_k_ind[0]]
-            return result
+            acc = np.linalg.norm(image_vector-feature_array.values()[top_k_ind[0]])
+            return result, acc
 
 
 def recognize_face(sess,pnet, rnet, onet,feature_array):
+    # Get input and output tensors
+    images_placeholder = sess.graph.get_tensor_by_name("input:0")
+    images_placeholder = tf.image.resize_images(images_placeholder,(160,160))
+    embeddings = sess.graph.get_tensor_by_name("embeddings:0")
+    phase_train_placeholder = sess.graph.get_tensor_by_name("phase_train:0")
 
-		    # Get input and output tensors
-		    images_placeholder = sess.graph.get_tensor_by_name("input:0")
-		    images_placeholder = tf.image.resize_images(images_placeholder,(160,160))
-		    embeddings = sess.graph.get_tensor_by_name("embeddings:0")
-		    phase_train_placeholder = sess.graph.get_tensor_by_name("phase_train:0")
+    image_size = args.image_size
+    embedding_size = embeddings.get_shape()[1]
 
-		    image_size = args.image_size
-		    embedding_size = embeddings.get_shape()[1]
+    cap = cv2.VideoCapture(-1)
 
+    while(True):
+        ret, frame = cap.read()
+        gray = cv2.cvtColor(frame, 0)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            cap.release()
+            cv2.destroyAllWindows()
+            break
+        if(gray.size > 0):
+            print(gray.size)
+            response, faces,bboxs = align_face(gray,pnet, rnet, onet)
+            print(response)
+            if (response == True):
+                    for i, image in enumerate(faces):
+                            bb = bboxs[i]
+                            images = load_img(image, False, False, image_size)
+                            feed_dict = { images_placeholder:images, phase_train_placeholder:False }
+                            feature_vector = sess.run(embeddings, feed_dict=feed_dict)
+                            result, accuracy = identify_person(feature_vector, feature_array,8)
+                            print(result.split("/")[:])
+                            print(accuracy)
 
-                    cap = cv2.VideoCapture(-1)
-    		    while(True):
-			    ret, frame = cap.read()
-        		    gray = cv2.cvtColor(frame, 0)
-                            
-        		    if cv2.waitKey(1) & 0xFF == ord('q'):
-		                     cap.release()
-		                     cv2.destroyAllWindows()
-		                     break
-                            if (gray.size > 0):
-                                    print(gray.size)
-		                    #faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-				    response, faces,bboxs = align_face(gray,pnet, rnet, onet)
-                                    print(response)
-                                    if (response == True):
-                                            for i, image in enumerate(faces): 
-                                                    bb = bboxs[i]
-						    images = load_img(image, False, False, image_size)
-						    
-						    feed_dict = { images_placeholder:images, phase_train_placeholder:False }
-						    feature_vector = sess.run(embeddings, feed_dict=feed_dict)
+                            if accuracy < 0.9:
+                                cv2.rectangle(gray,(bb[0],bb[1]),(bb[2],bb[3]),(255,255,255),2)
+                                W = int(bb[2]-bb[0])//2
+                                H = int(bb[3]-bb[1])//2
+                                cv2.putText(gray,"Hello "+result.split("/")[2],(bb[0]+W-(W//2),bb[1]-7), cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),1,cv2.LINE_AA)
+                            else:
+                                cv2.rectangle(gray,(bb[0],bb[1]),(bb[2],bb[3]),(255,255,255),2)
+                                W = int(bb[2]-bb[0])//2
+                                H = int(bb[3]-bb[1])//2
+                                cv2.putText(gray,"WHO ARE YOU ?",(bb[0]+W-(W//2),bb[1]-7), cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),1,cv2.LINE_AA)
+                            del feature_vector
 
-						    result = identify_person(feature_vector, feature_array,9)
-						    print(result.split("/")[2])
-
-						    cv2.rectangle(gray,(bb[0],bb[1]),(bb[2],bb[3]),(255,255,255),2)
-						    W = int(bb[2]-bb[0])//2
-						    H = int(bb[3]-bb[1])//2
-						    cv2.putText(gray,"Hello "+result.split("/")[2],(bb[0]+W-(W//2),bb[1]-7), cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,255,255),1,cv2.LINE_AA)
-						    cv2.imshow('img',gray)
-			    else:
-				    continue
+            cv2.imshow('img',gray)
+        else:
+            continue
 
