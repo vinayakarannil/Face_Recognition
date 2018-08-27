@@ -168,7 +168,7 @@ def recognize_face(sess,pnet, rnet, onet,feature_array):
                             feed_dict = { images_placeholder:images, phase_train_placeholder:False }
                             feature_vector = sess.run(embeddings, feed_dict=feed_dict)
                             result, accuracy = identify_person(feature_vector, feature_array,8)
-                            print(result.split("/")[:])
+                            print(result.split("/")[2])
                             print(accuracy)
 
                             if accuracy < 0.9:
