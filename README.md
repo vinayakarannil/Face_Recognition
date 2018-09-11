@@ -4,7 +4,9 @@ A light weight face recognition implementation using a pre-trained facenet model
 
 ## Steps to follow:
 1. Make the following changes :
-In lib/src/create_face_embeddings.py replace the data and pb file paths by your owns (you can also optionally turn on your GPU :  with tf.Session(config=tf.ConfigProto(device_count={'GPU': 0})) as sess: ) 
+In lib/src/create_face_embeddings.py replace the data and pb file paths by your owns (you can also optionally turn on your GPU :  with tf.Session(config=tf.ConfigProto(device_count={'GPU': 0})) as sess: )
+In server/rest-server.py modify the paths
+
 
 2. Create a dataset of faces for each person and arrange them in below order
 ```
