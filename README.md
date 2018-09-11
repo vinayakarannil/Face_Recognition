@@ -3,7 +3,10 @@
 A light weight face recognition implementation using a pre-trained facenet model. Most of the code is taken from David Sandberg's  [facenet](https://github.com/davidsandberg/facenet) repository.
 
 ## Steps to follow:
-1. Create a dataset of faces for each person and arrange them in below order
+1. Make the following changes :
+In lib/src/create_face_embeddings.py replace the data and pb file paths by your owns (you can also optionally turn on your GPU :  with tf.Session(config=tf.ConfigProto(device_count={'GPU': 0})) as sess: ) 
+
+2. Create a dataset of faces for each person and arrange them in below order
 ```
 root folder  
 │
@@ -16,18 +19,18 @@ root folder
 |   │───IMG2
 |   |   ....
 ```
-2. Align the faces using MTCNN or dllib. Please use the scripts available in lib/src/align. For this project i aligned faces using MTCNN.(Please have a look at [aligning faces](https://github.com/davidsandberg/facenet/wiki/Validate-on-lfw#4-align-the-lfw-dataset) if you need any clarifications) 
+3. Align the faces using MTCNN or dllib. Please use the scripts available in lib/src/align. For this project i aligned faces using MTCNN.(Please have a look at [aligning faces](https://github.com/davidsandberg/facenet/wiki/Validate-on-lfw#4-align-the-lfw-dataset) if you need any clarifications) 
 
 [Before alignment]<img src="https://github.com/vinayakkailas/face_recognition/blob/master/server/static/images/1.jpg"  width="250" height="250" />    [After alignment] <img src="https://github.com/vinayakkailas/face_recognition/blob/master/server/static/images/2.png"  width="250" height="250" /> 
 
-3. Download [pre-trained-weight](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: [available-weights](https://github.com/davidsandberg/facenet#pre-trained-models)) 
-4. Create face embeddings using pre-trained facenet model. Run the below scripts by changing the folder paths.(edit paths in [lines](https://github.com/vinayakkailas/face_recognition/blob/49ed6e80a4205e6a8fa1a18dbdc8976d4be29535/lib/src/create_face_embeddings.py#L49))
+4. Download [pre-trained-weight](https://drive.google.com/open?id=1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz) ,extract and keep it in lib/src/ckpt folder (for detailed info about availabe weights: [available-weights](https://github.com/davidsandberg/facenet#pre-trained-models)) 
+5. Create face embeddings using pre-trained facenet model. Run the below scripts by changing the folder paths.(edit paths in [lines](https://github.com/vinayakkailas/face_recognition/blob/49ed6e80a4205e6a8fa1a18dbdc8976d4be29535/lib/src/create_face_embeddings.py#L49))
 ```
   python lib/src/create_face_embeddings.py 
  ```
   Once you run the script succesfully, a pickle file with name face_embeddings.pickle will be generated inside lib/src folder
  
-5. Start the server by running the command
+6. Start the server by running the command
 ```
   python server/rest-server.py
 ```
