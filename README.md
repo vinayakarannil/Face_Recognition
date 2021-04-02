@@ -1,6 +1,6 @@
 # Face Recognition
 
-A light weight face recognition implementation using a pre-trained facenet model. Most of the code is taken from David Sandberg's  [facenet](https://github.com/davidsandberg/facenet) repository.
+[NOT ACTIVELY MAINTAINED] A light weight face recognition implementation using a pre-trained facenet model. Most of the code is taken from David Sandberg's  [facenet](https://github.com/davidsandberg/facenet) repository.
 
 ## Steps to follow:
 1. Make the following changes :
