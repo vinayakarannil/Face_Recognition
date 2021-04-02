@@ -6,7 +6,7 @@
 #-------------------------------------------------------------------------------------------------------------------------------                                                                                                                              
 ################################################################################################################################
 from flask import Flask, jsonify, abort, request, make_response, url_for,redirect, render_template
-from flask.ext.httpauth import HTTPBasicAuth
+from flask_httpauth import HTTPBasicAuth
 from werkzeug.utils import secure_filename
 import os
 import sys
